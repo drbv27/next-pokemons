@@ -4,7 +4,7 @@ import { ServerStyleSheet } from "styled-components";
 export default class MyDocument extends Document {
   static async getInitialProps(ctx) {
     const sheet = new ServerStyleSheet();
-    const originalRenderPage = ctx.originalRenderPage;
+    const originalRenderPage = ctx.renderPage;
 
     try {
       ctx.renderPage = () =>
@@ -12,13 +12,13 @@ export default class MyDocument extends Document {
           enhanceApp: (App) => (props) =>
             sheet.collectStyles(<App {...props} />),
         });
-      const initiaProps = await Document.getInitialProps(ctx);
 
+      const initialProps = await Document.getInitialProps(ctx);
       return {
-        ...initiaProps,
+        ...initialProps,
         styles: (
           <>
-            {initiaProps.styles}
+            {initialProps.styles}
             {sheet.getStyleElement()}
           </>
         ),
