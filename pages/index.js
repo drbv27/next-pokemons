@@ -6,7 +6,7 @@ const Pokemon = ({ pokemon }) => {
     .pop();
   return (
     <li>
-      <Link href={`pokemones/${id}`}>{pokemon.name}</Link>
+      <Link href={`/pokemones/${id}`}>{pokemon.name}</Link>
     </li>
   );
 };
